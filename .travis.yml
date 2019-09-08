@@ -1,4 +1,3 @@
-language: generic
 sudo: required
 services:
   - docker
@@ -7,7 +6,7 @@ before_install:
   - docker build -t ktryber/react-test -f ./client/dev.Dockerfile ./client
 
 script:
-  - docker run -e CI=true ktryber/react-test npm test
+  - docker run ktryber/react-test npm test -- --coverage
 
 after_success:
   - docker build -t ktryber/multi-client ./client
